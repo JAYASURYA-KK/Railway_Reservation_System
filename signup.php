@@ -21,12 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signup_btn'])) {
     $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $address = mysqli_real_escape_string($conn, $_POST['address']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     
     // Validation
-    if (empty($full_name) || empty($email) || empty($phone) || empty($address) || empty($password)) {
+    if (empty($full_name) || empty($email) || empty($phone) || empty($password)) {
         $signup_error = "All fields are required!";
     } elseif (strlen($password) < 6) {
         $signup_error = "Password must be at least 6 characters!";
@@ -44,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signup_btn'])) {
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
             
             // Insert user
-            $insert_query = "INSERT INTO USERS (Name, Email, Phone, Address, Password, Role) 
-                           VALUES ('$full_name', '$email', '$phone', '$address', '$hashed_password', 'user')";
+            $insert_query = "INSERT INTO USERS (Name, Email, Phone, Password, Role) 
+                           VALUES ('$full_name', '$email', '$phone', '$hashed_password', 'user')";
             
             if (mysqli_query($conn, $insert_query)) {
                 $signup_success = "Account created successfully! Redirecting to login...";
@@ -249,13 +248,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signup_btn'])) {
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input type="text" id="phone" name="phone" required placeholder="(555) 123-4567">
-                </div>
-            </div>
-
-            <div class="form-row full">
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea id="address" name="address" required placeholder="123 Main St, City, State"></textarea>
                 </div>
             </div>
 

@@ -21,17 +21,16 @@ $error_msg = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     $name = mysqli_real_escape_string($conn, trim($_POST['name']));
     $phone = mysqli_real_escape_string($conn, trim($_POST['phone']));
-    $address = mysqli_real_escape_string($conn, trim($_POST['address']));
     $password = trim($_POST['password']);
 
-    if ($name === '' || $phone === '' || $address === '') {
-        $error_msg = 'Name, phone and address are required.';
+    if ($name === '' || $phone === '') {
+        $error_msg = 'Name and phone are required.';
     } else {
         if ($password !== '') {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            $q = "UPDATE USERS SET Name='$name', Phone='$phone', Address='$address', Password='$hash' WHERE UserID=$user_id";
+            $q = "UPDATE USERS SET Name='$name', Phone='$phone', Password='$hash' WHERE UserID=$user_id";
         } else {
-            $q = "UPDATE USERS SET Name='$name', Phone='$phone', Address='$address' WHERE UserID=$user_id";
+            $q = "UPDATE USERS SET Name='$name', Phone='$phone' WHERE UserID=$user_id";
         }
         if (mysqli_query($conn, $q)) {
             $success_msg = 'Profile updated successfully.';
@@ -72,10 +71,6 @@ $user = mysqli_fetch_assoc($res);
                     <div class="form-group">
                         <label for="phone">Phone</label>
                         <input id="phone" name="phone" type="text" value="<?php echo htmlspecialchars($user['Phone']); ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <textarea id="address" name="address" rows="3" required><?php echo htmlspecialchars($user['Address']); ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="password">New Password (leave blank to keep)</label>

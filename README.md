@@ -5,29 +5,18 @@ A complete train reservation and booking management system built with PHP, MySQL
 ## Project Structure
 
 ```
-Directory structure:
-└── jayasurya-kk-railway_reservation_system/
-    ├── README.md
-    ├── admin_bookings.php
-    ├── admin_dashboard.php
-    ├── admin_stations.php
-    ├── admin_status.php
-    ├── admin_trains.php
-    ├── BCNF_analysis.md
-    ├── booking.php
-    ├── bookings.php
-    ├── index.php
-    ├── logout.php
-    ├── profile.php
-    ├── schema.sql
-    ├── script.js
-    ├── search.php
-    ├── signup.php
-    ├── style.css
-    ├── user_dashboard.php
-    └── document/
-        └── BCNF_analysis.md
-
+train-booking-system/
+├── index.php                 # Login page (entry point)
+├── signup.php               # User registration page
+├── admin_dashboard.php      # Admin panel for train management
+├── user_dashboard.php       # User panel for passengers & bookings
+├── logout.php              # Session logout
+├── schema.sql              # Database schema with sample data
+├── style.css               # Global styles
+├── script.js               # Client-side JavaScript
+└── public/
+    └── images/
+        └── rail.jpg        # Background image
 ```
 
 ## Features

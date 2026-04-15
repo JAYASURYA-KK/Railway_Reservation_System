@@ -705,10 +705,6 @@ $bookings_result = mysqli_query($conn, $bookings_query);
                         <td><?php echo htmlspecialchars($user_info['Phone']); ?></td>
                     </tr>
                     <tr>
-                        <th>Address</th>
-                        <td><?php echo htmlspecialchars($user_info['Address']); ?></td>
-                    </tr>
-                    <tr>
                         <th>Account Type</th>
                         <td><span style="background: #e8f5e9; padding: 5px 10px; border-radius: 3px;">Regular User</span></td>
                     </tr>

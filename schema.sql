@@ -17,7 +17,6 @@ CREATE TABLE USERS (
     Name VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     Phone VARCHAR(15) NOT NULL,
-    Address TEXT NOT NULL,
     Password VARCHAR(255) NOT NULL,
     Role ENUM('admin', 'user') DEFAULT 'user',
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -97,12 +96,12 @@ INSERT INTO STATION (StationName, City, State) VALUES
 ('Ahmedabad Junction', 'Ahmedabad', 'Gujarat');
 
 -- Insert Admin User (admin123)
-INSERT INTO USERS (Name, Email, Phone, Address, Password, Role) VALUES
-('Admin User', 'admin@gmail.com', '9999999999', 'Admin Office, Mumbai', '$2y$10$s6z4RwMDqJsIIWfWdD3dIey0v9VrPQB5R8p6q7m8n9o0p1q2r3s4', 'admin');
+INSERT INTO USERS (Name, Email, Phone, Password, Role) VALUES
+('Admin User', 'admin@gmail.com', '9999999999', '$2y$10$s6z4RwMDqJsIIWfWdD3dIey0v9VrPQB5R8p6q7m8n9o0p1q2r3s4', 'admin');
 
 -- Insert Sample User (user123)
-INSERT INTO USERS (Name, Email, Phone, Address, Password, Role) VALUES
-('John Doe', 'user@gmail.com', '9876543210', '123 Main Street, Delhi', '$2y$10$n0p1q2r3s4t5u6v7w8x9y0z1a2b3c4d5e6f7g8h9i0j1k2l3m4n5', 'user');
+INSERT INTO USERS (Name, Email, Phone, Password, Role) VALUES
+('John Doe', 'user@gmail.com', '9876543210', '$2y$10$n0p1q2r3s4t5u6v7w8x9y0z1a2b3c4d5e6f7g8h9i0j1k2l3m4n5', 'user');
 
 -- Insert Sample Trains
 INSERT INTO TRAIN (TrainNumber, TrainName, FromStation, ToStation, TotalSeats, Fare, DepartureTime, ArrivalTime) VALUES
