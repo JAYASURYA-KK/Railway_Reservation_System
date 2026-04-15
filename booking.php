@@ -5,13 +5,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'user') {
     exit();
 }
 
-$servername = "mysql-3475dc67-jayasurya272007-0f36.i.aivencloud.com"; 
-$username = "avnadmin"; 
-$password = "avnadmin";
-$dbname = "train_booking";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) die('Connection failed: ' . $conn->connect_error);
+require_once 'db.php';
 
 $user_id = $_SESSION['user_id'];
 $train_id = isset($_GET['train_id']) ? (int)$_GET['train_id'] : 0;

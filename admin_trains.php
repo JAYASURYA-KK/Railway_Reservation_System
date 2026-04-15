@@ -5,13 +5,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
     exit();
 }
 
-$servername = "mysql-3475dc67-jayasurya272007-0f36.i.aivencloud.com"; 
-$username = "avnadmin"; 
-$password = "avnadmin";
-$dbname = "train_booking";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) die('Connection failed: ' . $conn->connect_error);
+require_once 'db.php';
 
 // Ensure arrival/departure columns exist (safe to run on MySQL 8+)
 mysqli_query($conn, "ALTER TABLE TRAIN ADD COLUMN IF NOT EXISTS ArrivalTime TIME NULL, ADD COLUMN IF NOT EXISTS DepartureTime TIME NULL");

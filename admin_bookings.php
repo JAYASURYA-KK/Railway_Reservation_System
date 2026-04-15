@@ -6,13 +6,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
     exit();
 }
 
-$servername = "mysql-3475dc67-jayasurya272007-0f36.i.aivencloud.com"; 
-$username = "avnadmin"; 
-$password = "avnadmin";
-$dbname = "train_booking";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) die('Connection failed: ' . $conn->connect_error);
+require_once 'db.php';
 
 $query = "SELECT t.TicketID, p.PassengerName, tr.TrainNumber, tr.TrainName, tr.FromStation, tr.ToStation, tr.DepartureTime, tr.ArrivalTime, t.Status, t.BookingDate, u.Email as UserEmail
           FROM TICKET t

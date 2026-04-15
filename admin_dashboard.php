@@ -1,17 +1,7 @@
 <?php
 session_start();
 
-// Database connection
-$servername = "mysql-3475dc67-jayasurya272007-0f36.i.aivencloud.com"; 
-$username = "avnadmin"; 
-$password = "avnadmin";
-$dbname = "train_booking";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once 'db.php';
 
 // Check if admin is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
