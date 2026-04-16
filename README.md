@@ -1,267 +1,259 @@
-# Train Booking System
+# 🚆 Railway Reservation System
 
-A complete train reservation and booking management system built with PHP, MySQL, HTML, CSS, and JavaScript. Features separate admin and user dashboards with full CRUD operations.
+A complete train reservation and booking management system built with **PHP, MySQL, HTML, CSS, and JavaScript**. Features separate admin and user dashboards with full CRUD operations.
 
-## Project Structure
+🔗 **Live Demo:** [https://railway-reservation-system-rho7.onrender.com/index.php](https://railway-reservation-system-rho7.onrender.com/index.php)
+
+> **Note:** The app is hosted on Render's free tier. It may take **30–60 seconds** to wake up on the first visit.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer      | Technology                        |
+|------------|-----------------------------------|
+| Backend    | PHP 7.4+                          |
+| Database   | MySQL (hosted on **Aiven.io**)    |
+| Frontend   | HTML, CSS, JavaScript             |
+| Hosting    | **Render** (Web Service)          |
+
+---
+
+## 📁 Project Structure
 
 ```
-train-booking-system/
-├── index.php                 # Login page (entry point)
-├── signup.php               # User registration page
-├── admin_dashboard.php      # Admin panel for train management
-├── user_dashboard.php       # User panel for passengers & bookings
+Railway_Reservation_System/
+├── index.php               # Login page (entry point)
+├── signup.php              # User registration
 ├── logout.php              # Session logout
+│
+├── admin_dashboard.php     # Admin home panel
+├── admin_trains.php        # Train management (Add/Edit/Delete)
+├── admin_stations.php      # Station management
+├── admin_bookings.php      # View all bookings
+├── admin_status.php        # Train status management
+├── admin_users.php         # User account management
+│
+├── user_dashboard.php      # User home panel
+├── search.php              # Train search
+├── booking.php             # Ticket booking
+├── bookings.php            # User booking history
+├── profile.php             # User profile management
+│
 ├── schema.sql              # Database schema with sample data
 ├── style.css               # Global styles
 ├── script.js               # Client-side JavaScript
-└── public/
-    └── images/
-        └── rail.jpg        # Background image
+├── rail.gif                # Background animation
+│
+├── BCNF_analysis.md        # Database normalization analysis
+├── queries.md              # Sample SQL queries
+├── process.md              # Development process notes
+├── php.md                  # PHP implementation notes
+│
+├── document/               # Project documentation
+└── screenshot/             # Application screenshots
 ```
 
-## Features
+---
 
-### Admin Panel (`admin_dashboard.php`)
-- Login with demo credentials: `admin@gmail.com` / `admin123`
-- Manage trains (Add, Edit, Delete)
-- View all bookings and passengers
-- Manage user accounts
-- Train details: Number, Name, Route, Seats, Fare
+## ✨ Features
 
-### User Dashboard (`user_dashboard.php`)
-- Login with demo credentials: `user@gmail.com` / `user123`
-- Manage passengers (Add, Edit, Delete)
-- Search and book trains
-- View booking history with status
-- Personal profile management
-- Ticket status: CNF (Confirmed) / WTL (Waiting List) / RJD (Rejected)
+### 👨‍💼 Admin Panel
+- Manage trains — Add, Edit, Delete (`admin_trains.php`)
+- Manage stations (`admin_stations.php`)
+- Manage train status per date/class (`admin_status.php`)
+- View all bookings across users (`admin_bookings.php`)
+- Manage registered users (`admin_users.php`)
 
-### Authentication
-- Secure password hashing with bcrypt
+### 👤 User Dashboard
+- Search available trains by route/date (`search.php`)
+- Book tickets with seat availability check (`booking.php`)
+- View booking history with status (`bookings.php`)
+- Manage personal profile (`profile.php`)
+- Ticket status: **CNF** (Confirmed) / **WTL** (Waiting List) / **RJD** (Rejected)
+
+### 🔐 Authentication
+- Secure password hashing with **bcrypt**
 - Session-based authentication
-- Role-based access control (Admin/User)
-- Login/Signup with validation
+- Role-based access control (Admin / User)
+- Login and registration with validation
 
-## Database Schema
+---
+
+## 🗄️ Database Schema
+
+Hosted on **[Aiven.io](https://aiven.io)** (MySQL cloud service).
 
 ### Tables
-1. **USERS** - User accounts with roles
-2. **STATION** - Train stations
-3. **TRAIN** - Train information and routes
-4. **PASSENGER** - Passenger details
-5. **TSTATUS** - Per-train, per-date, per-class availability and fare (replaces TRAIN_STATUS)
-6. **TICKET** - Booking records
 
-All tables are in BCNF (Boyce-Codd Normal Form) with proper foreign key relationships.
+| Table       | Description                                               |
+|-------------|-----------------------------------------------------------|
+| `USERS`     | User accounts with roles (admin/user)                     |
+| `STATION`   | Train stations                                            |
+| `TRAIN`     | Train information and routes                              |
+| `PASSENGER` | Passenger details linked to users                         |
+| `TSTATUS`   | Per-train, per-date, per-class availability and fare      |
+| `TICKET`    | Booking records                                           |
 
-## Setup Instructions
+All tables are in **BCNF (Boyce-Codd Normal Form)** with proper foreign key relationships. See [`BCNF_analysis.md`](./BCNF_analysis.md) for full normalization details.
+
+---
+
+## 🔑 Demo Credentials
+
+### Admin Account
+| Field    | Value              |
+|----------|--------------------|
+| Email    | `admin@gmail.com`  |
+| Password | `admin123`         |
+| Role     | Full system access |
+
+### User Account
+| Field    | Value             |
+|----------|-------------------|
+| Email    | `user@gmail.com`  |
+| Password | `user123`         |
+| Role     | Book trains, manage passengers |
+
+---
+
+## 🚀 Local Setup
 
 ### Prerequisites
 - PHP 7.4 or higher
-- MySQL/MariaDB server
-- Apache/Nginx web server
+- MySQL / MariaDB server
+- Apache / Nginx (or built-in PHP server)
 - Modern web browser
 
-### Installation Steps
+### Steps
 
-1. **Create Database**
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/JAYASURYA-KK/Railway_Reservation_System.git
+   cd Railway_Reservation_System
+   ```
+
+2. **Create the database**
    ```bash
    mysql -u root -p < schema.sql
    ```
 
-2. **Update Database Connection**
-   Edit the following files and update connection details:
-   - `index.php` (line 6-9)
-   - `signup.php` (line 6-9)
-   - `admin_dashboard.php` (line 6-9)
-   - `user_dashboard.php` (line 6-9)
+3. **Configure the database connection**
+
+   Update the DB credentials in every PHP file that connects to MySQL (e.g., `index.php`, `signup.php`, `admin_dashboard.php`, `user_dashboard.php`, etc.):
 
    ```php
    $servername = "localhost";
-   $username = "root";
-   $password = "your_password";
-   $dbname = "train_booking";
+   $username   = "root";
+   $password   = "your_password";
+   $dbname     = "train_booking";
    ```
 
-3. **Place Files in Web Root**
-   - Copy all project files to your web server directory
-   - For XAMPP: `htdocs/train-booking/`
-   - For Linux: `/var/www/html/train-booking/`
-
-4. **Start Web Server**
+4. **Start the server**
    ```bash
-   # XAMPP - Start from XAMPP Control Panel
-   # OR for local PHP server
+   # Using PHP's built-in server
    php -S localhost:8000
+
+   # OR place files in XAMPP htdocs:
+   # htdocs/Railway_Reservation_System/
    ```
 
-5. **Access Application**
-   - Open browser and go to: `http://localhost/train-booking/index.php`
+5. **Open in browser**
+   ```
+   http://localhost:8000/index.php
+   ```
 
-## Demo Credentials
+---
 
-### Admin Account
-- Email: `admin@gmail.com`
-- Password: `admin123`
-- Role: Full system access
+## ☁️ Deployment (Render + Aiven)
 
-### User Account
-- Email: `user@gmail.com`
-- Password: `user123`
-- Role: Can book trains and manage passengers
+This project is deployed using:
 
-## File Details
+- **[Render](https://render.com)** — PHP web service hosting
+- **[Aiven](https://aiven.io)** — Managed MySQL cloud database
 
-### index.php (Login Page)
-- User authentication
-- Session validation
-- Auto-redirect based on role
-- Demo credentials display
+### To deploy your own instance:
 
-### signup.php (Registration)
-- New user registration
-- Email validation
-- Password strength check (min 6 characters)
-- Duplicate email prevention
+1. Push your code to a GitHub repository.
+2. Create a **MySQL** service on [Aiven.io](https://aiven.io) and import `schema.sql`.
+3. On [Render](https://render.com), create a new **Web Service** linked to your repo.
+4. Set the database environment variables (host, port, user, password, dbname) from Aiven's connection details.
+5. Update your PHP DB connection code to read from environment variables:
 
-### admin_dashboard.php (Admin Panel)
-- Train management with modal forms
-- View all bookings
-- Manage user accounts
-- Sidebar navigation
-- Success/error message alerts
+   ```php
+   $servername = getenv('DB_HOST');
+   $username   = getenv('DB_USER');
+   $password   = getenv('DB_PASSWORD');
+   $dbname     = getenv('DB_NAME');
+   $port       = getenv('DB_PORT');
+   ```
 
-### user_dashboard.php (User Dashboard)
-- Passenger CRUD operations
-- Train search and booking
-- Booking history with status
-- Profile information
-- Section switching via JavaScript
+---
 
-### schema.sql
-- Database and table creation
-- Sample data insertion
-- 8 sample trains
-- 3 sample passengers
-- Pre-configured admin/user accounts
+## 🔒 Security Features
 
-### style.css
-- Railway theme styling
-- Responsive design
-- Color-coded status badges
-- Professional navigation bar
-- Form and table styling
-
-### script.js
-- Section navigation
-- Modal management
-- Form validation
-- Alert auto-hiding
-- Passenger/Train editing functions
-
-## Security Features
-
-- Password hashing with bcrypt
-- SQL injection prevention (mysqli_real_escape_string)
-- XSS prevention (htmlspecialchars)
+- Password hashing with **bcrypt**
+- SQL injection prevention via `mysqli_real_escape_string`
+- XSS prevention via `htmlspecialchars`
 - Session-based authentication
 - Role-based access control
-- Prepared statements ready (can be enhanced)
 
-## User Operations
+---
 
-### Admin CRUD Operations
-1. **Add Train** - Enter train details and create
-2. **Edit Train** - Modify existing train information
-3. **Delete Train** - Remove trains from system
-4. **View Bookings** - See all passenger bookings
-5. **View Users** - List all registered users
+## 📋 Booking Status Codes
 
-### User CRUD Operations
-1. **Add Passenger** - Register new passenger
-2. **Edit Passenger** - Update passenger details
-3. **Delete Passenger** - Remove passenger from list
-4. **Book Ticket** - Reserve seat on a train
-5. **View Bookings** - Check booking status
+| Code  | Meaning                              |
+|-------|--------------------------------------|
+| `CNF` | Confirmed — seat reserved            |
+| `WTL` | Waiting List — seat not available    |
+| `RJD` | Rejected — booking could not proceed |
 
-## Booking Status Codes
+---
 
-- **CNF** (Confirmed) - Seat available and confirmed
-- **WTL** (Waiting List) - Seat not available, added to queue
-- **RJD** (Rejected) - Booking rejected
+## 🎨 UI Highlights
 
-## API Endpoints (Forms)
+- Railway-themed design with responsive layout
+- Color-coded booking status badges
+- Modal forms for admin operations
+- Mobile-friendly with flexbox/grid layouts
 
-All operations use POST method with form submissions:
-- Login: `POST index.php`
-- Registration: `POST signup.php`
-- Add Train: `POST admin_dashboard.php`
-- Add Passenger: `POST user_dashboard.php`
-- Book Ticket: `POST user_dashboard.php`
-
-## Responsive Design
-
-- Mobile-first approach
-- Flexbox layouts
-- Grid-based forms
-- Touch-friendly buttons
-- Optimized for tablets and phones
-
-## Color Scheme
-
+**Color Scheme:**
 - Primary Blue: `#0066cc`
 - Dark Blue: `#004999`
 - Success Green: `#4CAF50`
 - Danger Red: `#f44336`
-- Warning Yellow: `#fff3cd`
-- Light Gray: `#f5f5f5`
 
-## Browser Compatibility
+---
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers
-
-## Future Enhancements
+## 🔮 Future Enhancements
 
 - Payment gateway integration
-- Email notifications
-- SMS alerts
-- Advanced analytics
+- Email / SMS booking notifications
+- Ticket cancellation and refund processing
+- Real-time seat availability updates
+- Advanced admin analytics dashboard
 - Train schedule management
-- Real-time seat availability
-- Ticket cancellation system
-- Refund processing
 
-## Troubleshooting
+---
 
-### Database Connection Error
-- Check MySQL service is running
-- Verify username and password
-- Ensure `train_booking` database exists
+## 🐛 Troubleshooting
 
-### Login Failed
-- Check email/password format
-- Verify user exists in database
-- Clear browser cookies and try again
+| Issue | Solution |
+|---|---|
+| Database connection error | Verify Aiven host, port, user, and SSL settings |
+| Render cold start (slow load) | Free tier sleeps after inactivity — wait ~30–60s |
+| Login failed | Check credentials; clear browser cookies |
+| 404 File Not Found | Verify file paths and PHP is enabled on the server |
 
-### File Not Found (404)
-- Ensure all files are in correct directory
-- Check file permissions
-- Verify PHP is processing PHP files
+---
 
-## Support
-
-For issues or questions, check the code comments or review the database schema for reference implementation details.
-
-## License
+## 📄 License
 
 This project is open source and available for educational and commercial use.
 
 ---
 
-**Created**: April 2024
-**Version**: 1.0
-**Author**: Train Booking System Team
+**GitHub:** [JAYASURYA-KK/Railway_Reservation_System](https://github.com/JAYASURYA-KK/Railway_Reservation_System)  
+**Live Demo:** [railway-reservation-system-rho7.onrender.com](https://railway-reservation-system-rho7.onrender.com/index.php)  
+**Version:** 1.0  
+**Author:** JAYASURYA-KK
