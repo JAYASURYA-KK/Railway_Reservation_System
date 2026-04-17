@@ -14,8 +14,7 @@ A complete train reservation and booking management system built with **PHP, MyS
 |------------|-----------------------------------|
 | Backend    | PHP 7.4+                          |
 | Database   | MySQL (hosted on **Aiven.io**)    |
-| Frontend   | HTML, CSS, JavaScript             |
-| Hosting    | **Render** (Web Service)          |
+| Frontend   | HTML, CSS, JavaScript                     |
 
 ---
 
@@ -81,8 +80,6 @@ Railway_Reservation_System/
 ---
 
 ## 🗄️ Database Schema
-
-Hosted on **[Aiven.io](https://aiven.io)** (MySQL cloud service).
 
 ### Tables
 
@@ -172,32 +169,6 @@ This project is deployed using:
 - **[Render](https://render.com)** — PHP web service hosting
 - **[Aiven](https://aiven.io)** — Managed MySQL cloud database
 
-### To deploy your own instance:
-
-1. Push your code to a GitHub repository.
-2. Create a **MySQL** service on [Aiven.io](https://aiven.io) and import `schema.sql`.
-3. On [Render](https://render.com), create a new **Web Service** linked to your repo.
-4. Set the database environment variables (host, port, user, password, dbname) from Aiven's connection details.
-5. Update your PHP DB connection code to read from environment variables:
-
-   ```php
-   $servername = getenv('DB_HOST');
-   $username   = getenv('DB_USER');
-   $password   = getenv('DB_PASSWORD');
-   $dbname     = getenv('DB_NAME');
-   $port       = getenv('DB_PORT');
-   ```
-
----
-
-## 🔒 Security Features
-
-- Password hashing with **bcrypt**
-- SQL injection prevention via `mysqli_real_escape_string`
-- XSS prevention via `htmlspecialchars`
-- Session-based authentication
-- Role-based access control
-
 ---
 
 ## 📋 Booking Status Codes
@@ -233,17 +204,6 @@ This project is deployed using:
 - Real-time seat availability updates
 - Advanced admin analytics dashboard
 - Train schedule management
-
----
-
-## 🐛 Troubleshooting
-
-| Issue | Solution |
-|---|---|
-| Database connection error | Verify Aiven host, port, user, and SSL settings |
-| Render cold start (slow load) | Free tier sleeps after inactivity — wait ~30–60s |
-| Login failed | Check credentials; clear browser cookies |
-| 404 File Not Found | Verify file paths and PHP is enabled on the server |
 
 ---
 
