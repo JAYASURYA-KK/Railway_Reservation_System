@@ -159,15 +159,6 @@ All tables are in **BCNF (Boyce-Codd Normal Form)** with proper foreign key rela
 
 ---
 
-## ☁️ Deployment (Render + Aiven)
-
-This project is deployed using:
-
-- **[Render](https://render.com)** — PHP web service hosting
-- **[Aiven](https://aiven.io)** — Managed MySQL cloud database
-
----
-
 ## 📋 Booking Status Codes
 
 | Code  | Meaning                              |
