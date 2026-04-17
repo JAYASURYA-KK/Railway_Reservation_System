@@ -3,9 +3,6 @@
 A complete train reservation and booking management system built with **PHP, MySQL, HTML, CSS, and JavaScript**. Features separate admin and user dashboards with full CRUD operations.
 
 🔗 **Live Demo:** [https://railway-reservation-system-rho7.onrender.com/index.php](https://railway-reservation-system-rho7.onrender.com/index.php)
-
-> **Note:** The app is hosted on Render's free tier. It may take **30–60 seconds** to wake up on the first visit.
-
 ---
 
 ## 🛠️ Tech Stack
